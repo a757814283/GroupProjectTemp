@@ -266,22 +266,25 @@ app.post('/api/books/delete/:id', async (req, res) => {
 //api update book
 app.post('/api/books/update/:id', async (req, res) => {
     try {
-        await Book.findByIdAndUpdate(req.params.id, req.body);
-        res.json({ message: 'successfully update book' });
+        const updatedBook = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.json(updatedBook);
     } catch (err) {
-        res.status(500).send('Server error');
-		console.log('insert error or cannot connect db');
+        console.error('Error updating book or cannot connect to DB:', err);
+        res.status(500).json({ error: 'Server error' });
     }
 });
 
 //api add new book
-app.post('/api/books/update/:id', async (req, res) => {
+app.post('/api/books/add', async (req, res) => {
     try {
-        const updatedBook = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.json(updatedBook);
+		console.log('insertone');
+        const newBook = new Book(req.body);
+        await newBook.save();
+		console.log('inserted book with id: ' + newBook._id);
+        res.json({ message: 'successfully insert book' });
     } catch (err) {
-        console.error('Error while updating book or cannot connect to db:', err);
-        res.status(500).json({ error: 'Server error' });
+        res.status(500).send('Server error');
+		console.log('insert error or cannot connect db');
     }
 });
 
