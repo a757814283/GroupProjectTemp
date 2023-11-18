@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <ul>
+        <% books.forEach(book => { %>
+            <li><%= book.title %> by <%= book.author %> (<%= book.year %>)</li>
+        <% }) %>
+    </ul>
+	<a href="/">Go Back</a>
+</body>
+</html>

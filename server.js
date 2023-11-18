@@ -15,6 +15,7 @@
 } */ //mongodb method(cnDB)//const kittySchema = require('./models/kitty');//schema requirement
 //
 //names
+const serverport = 3000
 const collectionName_user = 'users';  //login/create
 const uri = `mongodb+srv://userfornode:12345678900@book-managementsystem.cqntnli.mongodb.net/BookManage`;
 //names
@@ -196,9 +197,29 @@ app.post('/books/delete/:id', async (req, res) => {
     }
 });
   
+  //search
+  app.get('/search', async (req, res) => {
+    const searchQuery = {};
+    if (req.query.author) {
+        searchQuery.author = req.query.author;
+		console.log('Search by Author');
+    }
+    if (req.query.year) {
+        searchQuery.year = parseInt(req.query.year);
+		console.log('Search by Year');
+    }
+
+    try {
+        const books = await Book.find(searchQuery);
+        res.render('search_results', { books: books });
+    } catch (err) {
+        res.status(500).send('Server error');
+    }
+});
+
   
 //end
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || serverport);
 
    
 
