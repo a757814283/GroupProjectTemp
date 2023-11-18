@@ -231,7 +231,8 @@ app.get('/api/books', async (req, res) => {
         res.status(500).json({ error: 'Server error' });
     }
 });
-  
+//GET /api/books/
+
 //api search book
   app.get('/api/books/search', async (req, res) => {
     const searchQuery = {};
@@ -251,6 +252,7 @@ app.get('/api/books', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
+//GET /api/books/search?author=AuthorName&year=2023
 
 //api delete book
 app.post('/api/books/delete/:id', async (req, res) => {
@@ -262,6 +264,7 @@ app.post('/api/books/delete/:id', async (req, res) => {
         res.status(500).json({ error: 'Server error' });
     }
 });
+//GET /api/books/delete/655512053291438656e2d8df
 
 //api update book
 app.post('/api/books/update/:id', async (req, res) => {
@@ -273,6 +276,8 @@ app.post('/api/books/update/:id', async (req, res) => {
         res.status(500).json({ error: 'Server error' });
     }
 });
+//POST /api/books/update/655512053291438656e2d8df 
+//Body: x-www-form-urlencoded: { title: 'mmm', author: '123123123', year: '123131231' }
 
 //api add new book
 app.post('/api/books/add', async (req, res) => {
@@ -287,6 +292,8 @@ app.post('/api/books/add', async (req, res) => {
 		console.log('insert error or cannot connect db');
     }
 });
+//POST /api/books/add
+//Body: x-www-form-urlencoded: { title: 'mmm', author: '123123123', year: '123131231' }
 
 //end
 app.listen(process.env.PORT || serverport);
