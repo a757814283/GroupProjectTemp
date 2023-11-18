@@ -219,7 +219,74 @@ app.post('/books/delete/:id', async (req, res) => {
     }
 });
 
+
+//api
+
+//api list book
+app.get('/api/books', async (req, res) => {
+    try {
+        const books = await Book.find();
+        res.json(books); 
+    } catch (err) {
+        res.status(500).json({ error: 'Server error' });
+    }
+});
   
+//api search book
+  app.get('/api/search', async (req, res) => {
+    const searchQuery = {};
+    if (req.query.author) {
+        searchQuery.author = req.query.author;
+		console.log('Search by Author');
+    }
+    if (req.query.year) {
+        searchQuery.year = parseInt(req.query.year);
+		console.log('Search by Year');
+    }
+
+    try {
+        const books = await Book.find(searchQuery);
+        res.json(books); 
+    } catch (err) {
+        res.status(500).send('Server error');
+    }
+});
+
+//api delete book
+app.post('/api/books/delete/:id', async (req, res) => {
+    try {
+        await Book.findByIdAndDelete(req.params.id);
+        res.json({ message: 'successfully delete book' });
+    } catch (err) {
+        console.error('Error while deleting book:', err);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
+//api update book
+app.post('/api/books/update/:id', async (req, res) => {
+    try {
+        await Book.findByIdAndUpdate(req.params.id, req.body);
+        res.json({ message: 'successfully update book' });
+    } catch (err) {
+        res.status(500).send('Server error');
+		console.log('insert error or cannot connect db');
+    }
+});
+
+//api add new book
+app.post('/api/books/add', async (req, res) => {
+    try {
+		console.log('insertone');
+        const newBook = new Book(req.body);
+        await newBook.save();
+		console.log('inserted book with id: ' + newBook._id);
+        res.json({ message: 'successfully insert book' });
+    } catch (err) {
+        res.status(500).send('Server error');
+		console.log('insert error or cannot connect db');
+    }
+});
 //end
 app.listen(process.env.PORT || serverport);
 
