@@ -233,7 +233,7 @@ app.get('/api/books', async (req, res) => {
 });
   
 //api search book
-  app.get('/api/search', async (req, res) => {
+  app.get('/api/books/search', async (req, res) => {
     const searchQuery = {};
     if (req.query.author) {
         searchQuery.author = req.query.author;
@@ -275,18 +275,16 @@ app.post('/api/books/update/:id', async (req, res) => {
 });
 
 //api add new book
-app.post('/api/books/add', async (req, res) => {
+app.post('/api/books/update/:id', async (req, res) => {
     try {
-		console.log('insertone');
-        const newBook = new Book(req.body);
-        await newBook.save();
-		console.log('inserted book with id: ' + newBook._id);
-        res.json({ message: 'successfully insert book' });
+        const updatedBook = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.json(updatedBook);
     } catch (err) {
-        res.status(500).send('Server error');
-		console.log('insert error or cannot connect db');
+        console.error('Error while updating book or cannot connect to db:', err);
+        res.status(500).json({ error: 'Server error' });
     }
 });
+
 //end
 app.listen(process.env.PORT || serverport);
 
