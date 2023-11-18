@@ -36,9 +36,11 @@ mongoose.connect(uri);
 const db=mongoose.connection;
 //shortcuts
 app.use(session({
-    userid: "session",  
-    keys: ["123"],
-}))
+    secret: '123456',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}));
 
 //bookSchema
  const bookSchema = new mongoose.Schema({
