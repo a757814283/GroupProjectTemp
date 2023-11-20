@@ -25,9 +25,10 @@ const mongoose = require('mongoose');
 const express = require('express');
 const session = require('cookie-session');
 const app = express();
- app.set('view engine','ejs');
+app.set('view engine','ejs');
 const bodyParser=require('body-parser');
- app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(__dirname + '/style'));
 //quotes
 
 //shortcuts
