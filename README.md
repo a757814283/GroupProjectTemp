@@ -94,18 +94,18 @@ In this project, there are three HTTP request types, post, get .
   - Create:	/api/books/add
 
 ![image](https://github.com/a757814283/GroupProject_Group64_381/assets/31002826/1a163e4e-80b3-41ab-ad40-2b162bdeb0aa)
-POST /api/books/add
+USEAGE: POST /api/books/add
 Body: x-www-form-urlencoded: { title: 'title', author: 'author', year: 'year' }
 
  - Delete:	/api/books/delete/:id
 
 ![image](https://github.com/a757814283/GroupProject_Group64_381/assets/31002826/d746565a-9d02-4895-bcc7-42ccc6f22840)
-POST /api/books/delete/id
+USEAGE: POST /api/books/delete/id
 
  - Update:	/api/books/update/:id
 
 ![image](https://github.com/a757814283/GroupProject_Group64_381/assets/31002826/c4ea03d5-c4b0-40f4-bc49-045ec9997815)
-POST /api/books/update/id
+USEAGE: POST /api/books/update/id
 Body: x-www-form-urlencoded: { title: 'title', author: 'author', year: 'year' }
 
 - GET:
@@ -113,13 +113,11 @@ Body: x-www-form-urlencoded: { title: 'title', author: 'author', year: 'year' }
  - List: /api/books
 
 ![image](https://github.com/a757814283/GroupProject_Group64_381/assets/31002826/2189fcdd-1f9b-420c-bfba-9475aefacbef)
-GET /api/books/
+USEAGE: GET /api/books/
 
 - Search:  /api/books/search?
 
 ![image](https://github.com/a757814283/GroupProject_Group64_381/assets/31002826/71a062d0-bd14-4769-a4a8-4f3206e98a9d)
-GET /api/books/search?author=AuthorName&year=2023
-
-For all restful CRUD services, login should be done at first.
+USEAGE: GET /api/books/search?author=AuthorName&year=2023
 
 
