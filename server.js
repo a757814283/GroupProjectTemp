@@ -127,7 +127,7 @@ app.get('/createaccount', (req, res) => {
   
 app.post('/createaccount', async(req, res) => {
     const result=await handle_accCreate(req.body.username,req.body.password);
-    if(result){ res.status(200).render('createaccount.ejs',{Message:"User Name Already Used"});}
+    if(result){ res.status(200).render('createaccount.ejs',{Message:"User Name Already Used / incorrect input"});}
 	else{
 	res.status(200).render('login.ejs',{Message:"Successfully Create Account! Plz Login"});
 	}
