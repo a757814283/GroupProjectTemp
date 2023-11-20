@@ -114,9 +114,6 @@ app.post('/login', async(req,res) => {
 });
 
 app.get('/createaccount', (req, res) => {
-	//check if login
-	if (!req.session.loggedIn) {
-	res.redirect('/login');} ;
    res.status(200).render('createaccount.ejs',{Message:null});   
   });
   
