@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>Book Management System</title>
 </head>
 <body>
+    <div class="head">
     <h1>Book List:</h1>
-    <table>
+    </div>
+    <ol></ol>
+    <table class="form">
         <tr>
             <th>Title</th>
             <th>Author</th>
@@ -27,14 +31,19 @@
         <% }) %>
     </table>
 	<a href="/books/new">Add New</a>
+    
+    <hr>
 	
-	<h1>Search Book:</h1>
+    <div class="Search">
+	<p>Search Book:</p>
 		<form action="/search" method="get">
-		<input type="text" name="author" placeholder="Search by author">
-		<input type="number" name="year" placeholder="Search by year">
+		<input type="text" name="author" placeholder="Search by author"><br>
+		<input type="number" name="year" placeholder="Search by year"><br>
+        <ol></ol>
 		<button type="submit">Search</button>
-	<table>
-	<td><a href="/logout">Logout</a></td>
-	</table>
+    </div>
+
+    <a href="/logout">Logout</a></td>
+	
 </body>
 </html>

@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>Edit Book</title>
 </head>
 <body>
     <h1>Edit Book</h1>
     <form action="/books/update/<%= book._id %>" method="post">
-     <input type="text" name="title" value="<%= book.title %>" placeholder="title" required>
-      <input type="text" name="author" value="<%= book.author %>" placeholder="author" required>
-        <input type="number" name="year" value="<%= book.year %>" placeholder="year" required>
+     <input type="text" name="title" value="<%= book.title %>" placeholder="title" required><br>
+      <input type="text" name="author" value="<%= book.author %>" placeholder="author" required><br>
+        <input type="number" name="year" value="<%= book.year %>" placeholder="year" required><br>
         <button type="submit">Update Book</button>
+        <a href="/">Go Back</a>
     </form>
-	<a href="/">Go Back</a>
+	
 </body>
 </html>

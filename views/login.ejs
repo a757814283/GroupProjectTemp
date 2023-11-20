@@ -1,25 +1,37 @@
 <html>
-
+<head>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
 <body>
-	<p>Wellcome to Book Management System! Please Login</p>
+    <div class="head">
+	<h1>Book Management Login</h1>
+    </div>
 	<ol>
 	</ol>
 	<hr>
-	<form action="/login" method="post">
+    <div class="form">
+	<form action="/login" method="post" >
 		Username: <input type="text" name="username"><br>
 		Password: <input type="password" name="password"><br>
-		<input type="submit" value="Login">
+        <ol></ol>
+		<input type="submit" value="Login" class="button">
 	</form>
+
 	<form action="/createaccount" method="get">
-		<input type="submit" value="Create An Account">
+		<input type="submit" value="Create An Account" class="button">
 	</form>
+    </div>
+    
+    <br>
+
+    <div class="msg">
 	<% if (Message){ %>
 	<div class="message">
 	<%=Message%>
 	</div>
 	<% } %>
+    </div>
+
 </body>
 
 </html>
-
-

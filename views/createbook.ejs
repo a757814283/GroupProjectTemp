@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>Book Management System</title>
 </head>
-    <h1>Add Book:</h1>
+    
 <body>
+    <div class="head">
+    <h1>Add Book:</h1>
+    </div>
+    <ol></ol>
+    <div  class="form">
     <form action="/books/add" method="post">
-        <input type="text" name="title" placeholder="Title" required>
-        <input type="text" name="author" placeholder="Author" required>
-        <input type="number" name="year" placeholder="Year" required>
+        <input type="text" name="title" placeholder="Title" required><br>
+        <input type="text" name="author" placeholder="Author" required><br>
+        <input type="number" name="year" placeholder="Year" required><br>
         <button type="submit">Add Book</button>
+        <a href="/">Go Back</a>
     </form>
-	<a href="/">Go Back</a>
+    </div>
+	
 </body>
 </html>

@@ -1,29 +1,40 @@
+<!DOCTYPE html>
 <html>
-<script>
-function myFunction(){
-	alert("你好，我是一个警告框！");
-}
-</script>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
 <body>
-	<p>Create Your Account Here</p>
+	<div class="head" >
+		<h1>Create Your Account Here</h1>
+	</div>
+	
 	<ol>
 	</ol>
 	<hr>
-	<form action="/createaccount" method="post">
-		Username: <input type="text" name="username"><br>
-		Password: <input type="password" name="password"><br>
-		<input type="submit" value="Create">
-	</form>
-	<a href='/login'>Back</a>
-	<% if (Message){ %>
-	<div class="message">
-	<%=Message%>
+	<div class="form">
+		<form action="/createaccount" method="post">
+			Username: <input type="text" name="username"><br>
+			Password: <input type="password" name="password"><br>
+            <ol></ol>
+			<input type="submit" value="Create" class="button">
+		</form>
+
+        <a href='/login'>Back</a>
 	</div>
-	<% } %>
+
+	<br>
+
+	<div class="msg">
+		<% if (Message){ %>
+			<div class="message">
+			<%=Message%>
+			</div>
+			<% } %>
+	</div>
+	
 	
 	
 </body>
 
 </html>
-
 
