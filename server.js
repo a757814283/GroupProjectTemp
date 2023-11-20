@@ -57,10 +57,10 @@ const Book = mongoose.model('books', bookSchema);
 	if(username == "" || password == "")
 	{
 		console.log("username/passwd is empty");
-		let result = null;
+		return null;
 	   }
 	else{
-   let result= await db.collection(collectionName_user).findOne({ "username": username,"password":password});}
+   let result= await db.collection(collectionName_user).findOne({ "username": username,"password":password});
    if(result){
    console.log(result)
    return result;
@@ -69,6 +69,8 @@ const Book = mongoose.model('books', bookSchema);
    return null;
    console.log("NOTCORRECT!!!")}
   }
+}
+  
    catch (err){
    console.error("Error while handle login",err);
    }
@@ -83,7 +85,7 @@ const Book = mongoose.model('books', bookSchema);
 		return true;
 	}
 	else{
-	let match = await db.collection(collectionName_user).findOne({"username":username});}
+	let match = await db.collection(collectionName_user).findOne({"username":username});
 	if(match){
 	console.log("Username used");
 	return true;
@@ -92,7 +94,7 @@ const Book = mongoose.model('books', bookSchema);
    let result=await db.collection(collectionName_user).insertOne({"username":username,"password":password});
    console.log(username + " Created");
    return false;}}
-   
+   }
    
    catch (err){
    console.error("Error while handle acccreate",err);
@@ -317,6 +319,3 @@ app.post('/api/books/add', async (req, res) => {
 
 //end
 app.listen(process.env.PORT || serverport);
-
-   
-
