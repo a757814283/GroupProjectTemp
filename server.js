@@ -119,7 +119,7 @@ app.post('/login', async(req,res) => {
    req.session.authenticated = true;
    req.session.userid = result._id.toString();
    console.log("Logged as " + result.username);
-   res.redirect('/');
+   return res.redirect('/');
 	   }
    else{res.status(200).render('login.ejs',{Message:"incorrect username or passwd"});}
 });
@@ -138,7 +138,7 @@ app.post('/createaccount', async(req, res) => {
   
   app.get('/logout',(req,res)=>{
   req.session.loggedIn = null;
-  res.redirect('/login');
+  return res.redirect('/login');
   })
   
   //books
@@ -146,7 +146,7 @@ app.post('/createaccount', async(req, res) => {
   app.get('/', async (req, res) => {
 	 //check if login
 	if (!req.session.loggedIn) {
-	res.redirect('/login');} ;
+	return res.redirect('/login');} ;
 	
     try {
 		console.log('list books');
@@ -161,7 +161,7 @@ app.post('/createaccount', async(req, res) => {
 app.get('/books/new', async (req, res) => {
 	//check if login
 	if (!req.session.loggedIn) {
-	res.redirect('/login');} ;
+	return res.redirect('/login');} ;
 	
     try {
 		console.log('insertone');
@@ -174,7 +174,7 @@ app.get('/books/new', async (req, res) => {
 app.get('/books/edit/:id', async (req, res) => {
 	 //check if login
 	if (!req.session.loggedIn) {
-	res.redirect('/login');} ;
+	return res.redirect('/login');} ;
 
     try {
         const book = await Book.findById(req.params.id);
@@ -191,7 +191,7 @@ app.post('/books/add', async (req, res) => {
         const newBook = new Book(req.body);
         await newBook.save();
 		console.log('inserted book with id: ' + newBook._id);
-        res.redirect('/');
+        return res.redirect('/');
     } catch (err) {
         res.status(500).send('Server error');
 		console.log('insert error or cannot connect db');
@@ -201,7 +201,7 @@ app.post('/books/add', async (req, res) => {
 app.post('/books/update/:id', async (req, res) => {
     try {
         await Book.findByIdAndUpdate(req.params.id, req.body);
-        res.redirect('/');
+        return res.redirect('/');
     } catch (err) {
         res.status(500).send('Server error');
 		console.log('insert error or cannot connect db');
@@ -211,7 +211,7 @@ app.post('/books/update/:id', async (req, res) => {
 app.post('/books/delete/:id', async (req, res) => {
     try {
         await Book.findByIdAndDelete(req.params.id);
-        res.redirect('/');
+        return res.redirect('/');
     } catch (err) {
         res.status(500).send('Server error');
 		console.log('insert error or cannot connect db');
@@ -222,7 +222,7 @@ app.post('/books/delete/:id', async (req, res) => {
   app.get('/search', async (req, res) => {
 	//check if login
 	if (!req.session.loggedIn) {
-	res.redirect('/login');} ;
+	return res.redirect('/login');} ;
 	
     const searchQuery = {};
     if (req.query.author) {
