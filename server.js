@@ -53,6 +53,10 @@ const Book = mongoose.model('books', bookSchema);
 //functions
    const handle_login = async (username, password) => {
    try{ 
+	   if(username == "" || password == ""){
+		   return null;
+		   console.log("username/passwd is empty");
+	   }
    console.log("Connected DB");
    let result= await db.collection(collectionName_user).findOne({ "username": username,"password":password});
    if(result){
@@ -62,8 +66,6 @@ const Book = mongoose.model('books', bookSchema);
    else{
    return null;
    console.log("NOTCORRECT!!!")}
- 
-   
   }
    catch (err){
    console.error("Error while handle login",err);
