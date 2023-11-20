@@ -114,6 +114,9 @@ app.post('/login', async(req,res) => {
 });
 
 app.get('/createaccount', (req, res) => {
+	//check if login
+	if (!req.session.loggedIn) {
+	res.redirect('/login');} ;
    res.status(200).render('createaccount.ejs',{Message:null});   
   });
   
@@ -148,6 +151,10 @@ app.post('/createaccount', async(req, res) => {
 });
 
 app.get('/books/new', async (req, res) => {
+	//check if login
+	if (!req.session.loggedIn) {
+	res.redirect('/login');} ;
+	
     try {
 		console.log('insertone');
 		res.render('createbook');
@@ -157,6 +164,10 @@ app.get('/books/new', async (req, res) => {
 });
 
 app.get('/books/edit/:id', async (req, res) => {
+	 //check if login
+	if (!req.session.loggedIn) {
+	res.redirect('/login');} ;
+
     try {
         const book = await Book.findById(req.params.id);
         res.render('edit', { book: book });
@@ -201,6 +212,10 @@ app.post('/books/delete/:id', async (req, res) => {
   
   //search
   app.get('/search', async (req, res) => {
+	//check if login
+	if (!req.session.loggedIn) {
+	res.redirect('/login');} ;
+	
     const searchQuery = {};
     if (req.query.author) {
         searchQuery.author = req.query.author;
