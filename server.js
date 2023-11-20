@@ -53,12 +53,14 @@ const Book = mongoose.model('books', bookSchema);
 //functions
    const handle_login = async (username, password) => {
    try{ 
-	   if(username == "" || password == ""){
-		   return null;
-		   console.log("username/passwd is empty");
-	   }
    console.log("Connected DB");
-   let result= await db.collection(collectionName_user).findOne({ "username": username,"password":password});
+	if(username == "" || password == "")
+	{
+		console.log("username/passwd is empty");
+		let result = null;
+	   }
+	else{
+   let result= await db.collection(collectionName_user).findOne({ "username": username,"password":password});}
    if(result){
    console.log(result)
    return result;
@@ -75,13 +77,17 @@ const Book = mongoose.model('books', bookSchema);
  //  
    const handle_accCreate = async (username, password) => {
    try{  
-   console.log("Connected DB");
-	let match = await db.collection(collectionName_user).findOne({"username":username});
+		if(username == "" || password == "")
+	{
+		console.log("username/passwd is empty");
+		return true;
+	}
+	else{
+	let match = await db.collection(collectionName_user).findOne({"username":username});}
 	if(match){
 	console.log("Username used");
 	return true;
 	}
-	
 	else{
    let result=await db.collection(collectionName_user).insertOne({"username":username,"password":password});
    console.log(username + " Created");
